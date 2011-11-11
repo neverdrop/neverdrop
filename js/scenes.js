@@ -16,5 +16,20 @@
 
 require.define({"scenes": function(require, exports, module) {
 
+var MenuScene = exports.MenuScene = function() {
+
+}
+
+var PlayScene = export.PlayScene = function() {
+
+}
+
+var HiScoresScene = export.HiScoresScene = function() {
+
+}
+
+var HelpScene = export.HelpScene = function() {
+
+}
 
 }}, []);

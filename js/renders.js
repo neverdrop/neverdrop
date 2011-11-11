@@ -16,6 +16,12 @@
 
 require.define({"renders": function(require, exports, module) {
 
+var CanvasRender = exports.CanvasRender = function(context) {
 
+}
+
+var WebGLRender = export.WebGLRender = function() {
+
+}
 
 }}, []);

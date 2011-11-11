@@ -16,10 +16,25 @@
 
 require.define({"main": function(require, exports, module) {
 
-alert("test");
+var $ = function (id) { return document.getElementById( id ); };
 
 var config = require("config");
+var scenes = require("scenes");
+var models = require("models");
+var renders = require("renders");
 
-alert(config.NAME);
+var main = function(canvas) {
 
-}}, ["config"]);
+	var scene = new scenes.MenuScene();
+	var render = new renders.CanvasRender(canvas.getContext("2d"));
+
+	var tick = function(time) {
+	
+	};
+
+	var interrupter = setInterval(tick, 30 / exports.FPS);
+}
+
+main($("canvas"));
+
+}}, ["config", "scenes", "models", "renders"]);
