@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-require.define({"scenes": function(require, exports, module) {
+require.define({"renders": function(require, exports, module) {
 
 
 }}, []);

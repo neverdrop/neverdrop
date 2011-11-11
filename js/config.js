@@ -17,5 +17,6 @@
 require.define({"config": function(require, exports, module) {
 
 exports.NAME = "Neverdrop";
+exports.VERSION = "1.0.0";
 
 }}, []);
