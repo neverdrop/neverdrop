@@ -16,12 +16,26 @@
 
 require.define({"renders": function(require, exports, module) {
 
+var utils = require("utils");
+
+var AbstractRender = function() { }
+
+AbstractRender.prototype.render = function (scene) {
+	this.drawText("hello");
+}
+
 var CanvasRender = exports.CanvasRender = function(context) {
+	this.context = context;
+}
+utils.extend(CanvasRender, AbstractRender);
 
+CanvasRender.prototype.drawText = function(text) {
+	this.context.fillText(text, 20, 20);
 }
 
-var WebGLRender = export.WebGLRender = function() {
+var WebGLRender = exports.WebGLRender = function() {
 
 }
+utils.extend(WebGLRender, AbstractRender);
 
-}}, []);
+}}, ["utils"]);

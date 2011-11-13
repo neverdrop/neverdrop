@@ -16,20 +16,35 @@
 
 require.define({"scenes": function(require, exports, module) {
 
+var utils = require("utils");
+
+var AbstractScene = function() {
+}
+
+AbstractScene.prototype.update = function(time) {
+	
+}
+
 var MenuScene = exports.MenuScene = function() {
 
 }
+utils.extend(MenuScene, AbstractScene);
 
-var PlayScene = export.PlayScene = function() {
-
-}
-
-var HiScoresScene = export.HiScoresScene = function() {
+var GameScene = exports.GameScene = function() {
 
 }
 
-var HelpScene = export.HelpScene = function() {
+var HiScoresScene = exports.HiScoresScene = function() {
 
 }
 
-}}, []);
+var HelpScene = exports.HelpScene = function() {
+
+}
+
+exports.MENU_SCENE = new MenuScene();
+exports.GAME_SCENE = new GameScene();
+exports.HELP_SCENE = new HelpScene();
+exports.HISCORES_SCENE = new HiScoresScene();
+
+}}, ["utils"]);

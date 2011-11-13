@@ -18,6 +18,10 @@ require.define({"config": function(require, exports, module) {
 
 exports.NAME = "Neverdrop";
 exports.VERSION = "1.0.0";
+
 exports.FPS = 30;
+
+exports.HEIGHT = 480;
+exports.WIDTH = 320;
 
 }}, []);
