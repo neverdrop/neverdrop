@@ -46,6 +46,7 @@ AbstractScene.prototype.update = function(time) {
 
 var MenuScene = exports.MenuScene = function() {
 	AbstractScene.call(this);
+
 };
 utils.extend(MenuScene, AbstractScene);
 
@@ -64,9 +65,11 @@ var HelpScene = exports.HelpScene = function() {
 };
 utils.extend(HelpScene, AbstractScene);
 
-exports.MENU_SCENE = new MenuScene();
-exports.GAME_SCENE = new GameScene();
-exports.HELP_SCENE = new HelpScene();
-exports.HISCORES_SCENE = new HiScoresScene();
+var MENU_SCENE = exports.MENU_SCENE = new MenuScene();
+var GAME_SCENE = exports.GAME_SCENE = new GameScene();
+var HELP_SCENE = exports.HELP_SCENE = new HelpScene();
+var HISCORES_SCENE = exports.HISCORES_SCENE = new HiScoresScene();
+
+
 
 }}, ["utils"]);
