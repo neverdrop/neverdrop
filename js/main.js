@@ -28,10 +28,8 @@ var main = function(canvas) {
 	canvas.height = config.HEIGHT;
 	canvas.width = config.WIDTH;
 
-	var scene = scenes.MENU_SCENE;
-	var render = new renders.CanvasRender(canvas.getContext("2d"));
-
-	scene.add(new models.BlobModel());
+	var scene = scenes.GAME_SCENE;
+	var render = new renders.DebugRender();
 
 	var tick = function(time) {
 

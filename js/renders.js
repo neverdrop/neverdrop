@@ -18,6 +18,7 @@ require.define({"renders": function(require, exports, module) {
 
 var utils = require("utils");
 var config = require("config");
+var models = require("models");
 
 var AbstractRender = function() { };
 AbstractRender.prototype.render = function (scene) {
@@ -25,7 +26,10 @@ AbstractRender.prototype.render = function (scene) {
 	this.clear();
 
 	for (var index in scene.models) {
-		this.drawText(scene.models[index].data);
+
+		if (scene.models[index] instanceof models.BlobModel) {
+			
+		}
 	}
 };
 
@@ -42,10 +46,28 @@ CanvasRender.prototype.clear = function() {
 	this.context.clearRect(0, 0, config.HEIGHT, config.WIDTH);
 };
 
-
 var WebGLRender = exports.WebGLRender = function() {
 
 };
 utils.extend(WebGLRender, AbstractRender);
 
-}}, ["utils", "config"]);
+var DebugRender = exports.DebugRender = function(context) {
+	AbstractRender.call(this);
+
+	var dd = new b2DebugDraw();
+	dd.SetSprite(context);
+	dd.SetDrawScale(30.0);
+	dd.SetFillAlpha(0.5);
+	// dd.SetLineThickness(1.0);
+	dd.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
+
+	this.debugDraw = dd;
+	
+};
+utils.extend(WebGLRender, AbstractRender);
+
+DebugRender.prototype.render = function (scene) {
+	// scene.world.SetDebugDraw(this.debugDraw);
+};
+
+}}, ["utils", "config", "models"]);

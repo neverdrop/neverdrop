@@ -19,19 +19,38 @@ require.define({"models": function(require, exports, module) {
 var utils = require("utils");
 
 var AbstractModel = function() {
+
 	this.x = 0;
 	this.y = 0;
 	this.height = 0;
 	this.width = 0;
+	
 };
 AbstractModel.prototype.update = function(time) {
 
 };
 
-var BlobModel = exports.BlobModel = function() {
-	AbstractModel.call(this);
+var BlobModel = exports.BlobModel = function(world) {
+	// AbstractModel.call(this);
 
-	this.data = 0;
+	console.log(world);
+
+	var bodyDef = new b2BodyDef();
+	bodyDef.type = b2Body.b2_dynamicBody;
+
+	var fixDef = new b2FixtureDef();
+
+	fixDef.density = 1.0;
+	fixDef.friction = 0.5;
+	fixDef.restitution = 0.2;
+
+	fixDef.shape = new b2PolygonShape();
+	fixDef.shape.SetAsBox (30, 30);
+
+	bodyDef.position.x = 10;
+	bodyDef.position.y = 10;
+
+	this.body = world.CreateBody(bodyDef).CreateFixture(fixDef);
 };
 utils.extend(BlobModel, AbstractModel);
 

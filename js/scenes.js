@@ -21,6 +21,18 @@ var utils = require("utils");
 
 var indexer = 0;
 
+b2AABB = Box2D.Collision.b2AABB;
+b2World = Box2D.Dynamics.b2World;
+b2Vec2 = Box2D.Common.Math.b2Vec2;
+b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
+b2Body = Box2D.Dynamics.b2Body;
+b2BodyDef = Box2D.Dynamics.b2BodyDef;
+b2FixtureDef = Box2D.Dynamics.b2FixtureDef;
+b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
+b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
+b2MouseJointDef = Box2D.Dynamics.Joints.b2MouseJointDef;
+b2ContactListener = Box2D.Dynamics.b2ContactListener;
+
 var AbstractScene = function() {
 
 	this.models = {};
@@ -52,11 +64,33 @@ var MenuScene = exports.MenuScene = function() {
 utils.extend(MenuScene, AbstractScene);
 
 var GameScene = exports.GameScene = function() {
+	// AbstractScene.call(this);
 
-	this.world = undefined;
+	// crate world
+	this.world = new b2World(new b2Vec2(0, 10), true);
+
+	new models.BlobModel(this.world);
+	// create models
+	// this.models[indexer++] = new models.BlobModel(this.world);
+
+	var dd = new b2DebugDraw();
+	dd.SetSprite(utils.$("canvas").getContext("2d"));
+	dd.SetDrawScale(30.0);
+	dd.SetFillAlpha(0.5);
+	dd.SetLineThickness(1.0);
+	dd.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
+
+	this.world.SetDebugDraw(dd);
 
 };
 utils.extend(GameScene, AbstractScene);
+
+GameScene.prototype.update = function(time) {
+	this.world.Step(1/30, 10, 10);
+	this.world.DrawDebugData();
+	this.world.ClearForces();
+	// AbstractScene.prototype.update(this);
+};
 
 var HiScoresScene = exports.HiScoresScene = function() {
 
