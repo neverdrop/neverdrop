@@ -31,6 +31,8 @@ var main = function(canvas) {
 	var scene = scenes.MENU_SCENE;
 	var render = new renders.CanvasRender(canvas.getContext("2d"));
 
+	scene.add(new models.BlobModel());
+
 	var tick = function(time) {
 
 		var event = undefined;
@@ -51,9 +53,14 @@ var main = function(canvas) {
 		}
 	};
 
-	var interrupter = setInterval(tick, 1000 / exports.FPS);
+	var last = new Date().getTime();
 
-}
+	var interrupter = setInterval(
+		function() { var current = new Date().getTime(); tick(current - last); last = current; },
+		1000 / exports.FPS
+	);
+
+};
 
 main(utils.$("canvas"));
 

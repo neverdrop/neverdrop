@@ -17,25 +17,35 @@
 require.define({"renders": function(require, exports, module) {
 
 var utils = require("utils");
+var config = require("config");
 
-var AbstractRender = function() { }
-
+var AbstractRender = function() { };
 AbstractRender.prototype.render = function (scene) {
-	this.drawText("hello");
-}
+
+	this.clear();
+
+	for (var index in scene.models) {
+		this.drawText(scene.models[index].data);
+	}
+};
 
 var CanvasRender = exports.CanvasRender = function(context) {
 	this.context = context;
-}
+};
 utils.extend(CanvasRender, AbstractRender);
 
 CanvasRender.prototype.drawText = function(text) {
 	this.context.fillText(text, 20, 20);
-}
+};
+
+CanvasRender.prototype.clear = function() {
+	this.context.clearRect(0, 0, config.HEIGHT, config.WIDTH);
+};
+
 
 var WebGLRender = exports.WebGLRender = function() {
 
-}
+};
 utils.extend(WebGLRender, AbstractRender);
 
-}}, ["utils"]);
+}}, ["utils", "config"]);

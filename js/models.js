@@ -16,5 +16,27 @@
 
 require.define({"models": function(require, exports, module) {
 
+var utils = require("utils");
 
-}}, []);
+var AbstractModel = function() {
+	this.x = 0;
+	this.y = 0;
+	this.height = 0;
+	this.width = 0;
+};
+AbstractModel.prototype.update = function(time) {
+
+};
+
+var BlobModel = exports.BlobModel = function() {
+	AbstractModel.call(this);
+
+	this.data = 0;
+};
+utils.extend(BlobModel, AbstractModel);
+
+BlobModel.prototype.update = function(time) {
+	this.data = time;
+}
+
+}}, ["utils"]);
