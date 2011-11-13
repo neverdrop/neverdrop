@@ -16,6 +16,7 @@
 
 require.define({"scenes": function(require, exports, module) {
 
+var models = require("models");
 var utils = require("utils");
 
 var indexer = 0;
@@ -52,6 +53,8 @@ utils.extend(MenuScene, AbstractScene);
 
 var GameScene = exports.GameScene = function() {
 
+	this.world = undefined;
+
 };
 utils.extend(GameScene, AbstractScene);
 
@@ -70,6 +73,4 @@ var GAME_SCENE = exports.GAME_SCENE = new GameScene();
 var HELP_SCENE = exports.HELP_SCENE = new HelpScene();
 var HISCORES_SCENE = exports.HISCORES_SCENE = new HiScoresScene();
 
-
-
-}}, ["utils"]);
+}}, ["models", "utils"]);

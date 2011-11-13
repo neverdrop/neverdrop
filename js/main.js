@@ -31,6 +31,8 @@ var main = function(canvas) {
 	var scene = scenes.MENU_SCENE;
 	var render = new renders.CanvasRender(canvas.getContext("2d"));
 
+	scene.add(new models.BlobModel());
+
 	var tick = function(time) {
 
 		var event = undefined;
