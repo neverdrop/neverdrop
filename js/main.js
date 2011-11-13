@@ -21,6 +21,7 @@ var utils = require("utils");
 var scenes = require("scenes");
 var models = require("models");
 var renders = require("renders");
+var events = require("events");
 
 var main = function(canvas) {
 
@@ -32,16 +33,28 @@ var main = function(canvas) {
 
 	var tick = function(time) {
 
+		var event = undefined;
+		while (event = events.queue.shift()) {
+			handle(event);
+		}
+
 		scene.update(time);
 		render.render(scene);
 
 	};
 
-	// var interrupter = setInterval(tick, 30 / exports.FPS);
+	var handle = function(event) {
+		if (event.type == events.EVENT_TYPE.LEFT_PRESSED) {
+			console.log("LEFT");
+		} else if (event.type == events.EVENT_TYPE.RIGHT_PRESSED) {
+			console.log("RIGHT");
+		}
+	};
 
-	tick(0);
+	var interrupter = setInterval(tick, 1000 / exports.FPS);
+
 }
 
 main(utils.$("canvas"));
 
-}}, ["config", "utils", "scenes", "models", "renders"]);
+}}, ["config", "utils", "scenes", "models", "renders", "events"]);
