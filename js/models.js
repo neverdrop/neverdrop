@@ -31,7 +31,7 @@ AbstractModel.prototype.update = function(time) {
 };
 
 var BlobModel = exports.BlobModel = function(world) {
-	// AbstractModel.call(this);
+	AbstractModel.call(this);
 
 	var bodyDef = new b2BodyDef();
 	bodyDef.type = b2Body.b2_dynamicBody;
@@ -43,7 +43,7 @@ var BlobModel = exports.BlobModel = function(world) {
 	fixDef.restitution = 0.2;
 
 	fixDef.shape = new b2PolygonShape();
-	fixDef.shape.SetAsBox (1, 1);
+	fixDef.shape.SetAsBox(1, 1);
 
 	bodyDef.position.x = 10;
 	bodyDef.position.y = 10;
@@ -58,7 +58,7 @@ BlobModel.prototype.update = function(time) {
 };
 
 BlobModel.prototype.render = function(renderer) {
-	renderer.renderText("asdasd");
+	// renderer.renderText("asdasd");
 };
 
 }}, ["utils"]);

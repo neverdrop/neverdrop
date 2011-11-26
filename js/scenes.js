@@ -24,7 +24,7 @@ var indexer = 0;
 var AbstractScene = function() {
 
 	this.models = {};
-	
+
 };
 AbstractScene.prototype.add = function(model) {
 	this.models[indexer++] = model;
@@ -52,33 +52,21 @@ var MenuScene = exports.MenuScene = function() {
 utils.extend(MenuScene, AbstractScene);
 
 var GameScene = exports.GameScene = function() {
-	// AbstractScene.call(this);
+	AbstractScene.call(this);
 
-	// crate world
 	this.world = new b2World(new b2Vec2(0, 10), true);
 
-	// console.log(this.world);
-	new models.BlobModel(this.world);
-	// create models
 	// this.models[indexer++] = new models.BlobModel(this.world);
-
-	var dd = new b2DebugDraw();
-	dd.SetSprite(utils.$("canvas").getContext("2d"));
-	dd.SetDrawScale(10.0);
-	dd.SetFillAlpha(1.0);
-	dd.SetLineThickness(1.0);
-	dd.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
-
-	this.world.SetDebugDraw(dd);
+	new models.BlobModel(this.world);
 
 };
 utils.extend(GameScene, AbstractScene);
 
 GameScene.prototype.update = function(time) {
-	this.world.Step(1/30, 10, 10);
-	this.world.DrawDebugData();
-	this.world.ClearForces();
 	// AbstractScene.prototype.update(this);
+
+	this.world.Step(1/30, 10, 10);
+
 };
 
 var HiScoresScene = exports.HiScoresScene = function() {

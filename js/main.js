@@ -29,7 +29,7 @@ var main = function(canvas) {
 	canvas.width = config.WIDTH;
 
 	var scene = scenes.GAME_SCENE;
-	var renderer = new renderers.DebugRenderer();
+	var renderer = new renderers.DebugRenderer(canvas, scene.world);
 
 	var tick = function(time) {
 
