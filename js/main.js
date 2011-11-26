@@ -20,7 +20,7 @@ var config = require("config");
 var utils = require("utils");
 var scenes = require("scenes");
 var models = require("models");
-var renders = require("renders");
+var renderers = require("renderers");
 var events = require("events");
 
 var main = function(canvas) {
@@ -29,7 +29,7 @@ var main = function(canvas) {
 	canvas.width = config.WIDTH;
 
 	var scene = scenes.GAME_SCENE;
-	var render = new renders.DebugRender();
+	var renderer = new renderers.DebugRenderer();
 
 	var tick = function(time) {
 
@@ -39,7 +39,7 @@ var main = function(canvas) {
 		}
 
 		scene.update(time);
-		render.render(scene);
+		renderer.render(scene);
 
 	};
 
@@ -62,4 +62,4 @@ var main = function(canvas) {
 
 main(utils.$("canvas"));
 
-}}, ["config", "utils", "scenes", "models", "renders", "events"]);
+}}, ["config", "utils", "scenes", "models", "renderers", "events"]);

@@ -56,6 +56,11 @@ utils.extend(BlobModel, AbstractModel);
 
 BlobModel.prototype.update = function(time) {
 	this.data = time;
-}
+};
+
+BlobModel.prototype.render = function(renderer) {
+	renderer.renderText("asdasd");
+};
+
 
 }}, ["utils"]);
