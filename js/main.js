@@ -55,7 +55,7 @@ var main = function(canvas) {
 
 	var interrupter = setInterval(
 		function() { var current = new Date().getTime(); tick(current - last); last = current; },
-		1000 / exports.FPS
+		1000 / config.FPS
 	);
 
 };

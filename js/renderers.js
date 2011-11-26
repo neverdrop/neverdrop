@@ -55,15 +55,15 @@ utils.extend(WebGLRenderer, AbstractRenderer);
 var DebugRenderer = exports.DebugRenderer = function(context) {
 	AbstractRenderer.call(this);
 
-	var dd = new b2DebugDraw();
-	dd.SetSprite(context);
-	dd.SetDrawScale(30.0);
-	dd.SetFillAlpha(0.5);
-	// dd.SetLineThickness(1.0);
-	dd.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
-
-	this.debugDraw = dd;
-	
+//	var dd = new b2DebugDraw();
+//	dd.SetSprite(context);
+//	dd.SetDrawScale(30.0);
+//	dd.SetFillAlpha(0.5);
+//	// dd.SetLineThickness(1.0);
+//	dd.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
+//
+//	this.debugDraw = dd;
+//
 };
 utils.extend(WebGLRenderer, AbstractRenderer);
 

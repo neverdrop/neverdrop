@@ -57,14 +57,15 @@ var GameScene = exports.GameScene = function() {
 	// crate world
 	this.world = new b2World(new b2Vec2(0, 10), true);
 
+	// console.log(this.world);
 	new models.BlobModel(this.world);
 	// create models
 	// this.models[indexer++] = new models.BlobModel(this.world);
 
 	var dd = new b2DebugDraw();
 	dd.SetSprite(utils.$("canvas").getContext("2d"));
-	dd.SetDrawScale(30.0);
-	dd.SetFillAlpha(0.5);
+	dd.SetDrawScale(10.0);
+	dd.SetFillAlpha(1.0);
 	dd.SetLineThickness(1.0);
 	dd.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
 
