@@ -44,11 +44,7 @@ var main = function(canvas) {
 	};
 
 	var handle = function(event) {
-		if (event.type == events.EVENT_TYPE.LEFT_PRESSED) {
-			console.log("LEFT");
-		} else if (event.type == events.EVENT_TYPE.RIGHT_PRESSED) {
-			console.log("RIGHT");
-		}
+		scene.handle(event);
 	};
 
 	var last = new Date().getTime();

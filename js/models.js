@@ -17,15 +17,12 @@
 require.define({"models": function(require, exports, module) {
 
 var utils = require("utils");
+var events = require("events");
 
 var AbstractModel = function() {
 
-	this.x = 0;
-	this.y = 0;
-	this.height = 0;
-	this.width = 0;
-	
 };
+
 AbstractModel.prototype.update = function(time) {
 
 };
@@ -48,7 +45,7 @@ var BlobModel = exports.BlobModel = function(world) {
 	bodyDef.position.x = 10;
 	bodyDef.position.y = 10;
 
-	this.body = world.CreateBody(bodyDef).CreateFixture(fixDef);
+	this.body = world.CreateBody(bodyDef).CreateFixture(fixDef).GetBody();
 
 };
 utils.extend(BlobModel, AbstractModel);
@@ -61,4 +58,14 @@ BlobModel.prototype.render = function(renderer) {
 	// renderer.renderText("asdasd");
 };
 
-}}, ["utils"]);
+BlobModel.prototype.handle = function(event) {
+
+	if (event.type == events.EVENT_TYPE.LEFT_PRESSED) {
+		var position = this.body.GetPosition();
+		position.x += 0.5;
+		this.body.SetPosition(position);
+	}
+	
+};
+
+}}, ["utils", "events"]);

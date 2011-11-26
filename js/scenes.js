@@ -45,6 +45,13 @@ AbstractScene.prototype.update = function(time) {
 	}
 };
 
+AbstractScene.prototype.handle = function(event) {
+
+	for (var index in this.models) {
+		this.models[index].handle(event);
+	}
+};
+
 var MenuScene = exports.MenuScene = function() {
 	AbstractScene.call(this);
 
@@ -55,15 +62,13 @@ var GameScene = exports.GameScene = function() {
 	AbstractScene.call(this);
 
 	this.world = new b2World(new b2Vec2(0, 10), true);
-
-	// this.models[indexer++] = new models.BlobModel(this.world);
-	new models.BlobModel(this.world);
+	this.models[indexer++] = new models.BlobModel(this.world);
 
 };
 utils.extend(GameScene, AbstractScene);
 
 GameScene.prototype.update = function(time) {
-	// AbstractScene.prototype.update(this);
+	AbstractScene.prototype.update(this);
 
 	this.world.Step(1/30, 10, 10);
 
