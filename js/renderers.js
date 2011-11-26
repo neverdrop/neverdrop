@@ -34,8 +34,8 @@ AbstractRenderer.prototype.clear = function() { };
 AbstractRenderer.prototype.renderText = function(text) { };
 AbstractRenderer.prototype.renderImage = function(image) { };
 
-var CanvasRenderer = exports.CanvasRenderer = function(context) {
-	this.context = context;
+var CanvasRenderer = exports.CanvasRenderer = function(canvas) {
+	this.context = canvas.getContext("2d");
 };
 utils.extend(CanvasRenderer, AbstractRenderer);
 
@@ -52,12 +52,12 @@ var WebGLRenderer = exports.WebGLRenderer = function() {
 };
 utils.extend(WebGLRenderer, AbstractRenderer);
 
-var DebugRenderer = exports.DebugRenderer = function(context, world) {
+var DebugRenderer = exports.DebugRenderer = function(canvas, world) {
 	AbstractRenderer.call(this);
 
 	var dd = new b2DebugDraw();
 
-	dd.SetSprite(context);
+	dd.SetSprite(canvas.getContext("2d"));
 	dd.SetDrawScale(10.0);
 	dd.SetFillAlpha(1.0);
 	dd.SetLineThickness(1.0);
